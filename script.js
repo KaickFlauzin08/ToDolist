@@ -11,16 +11,24 @@ if(nome==""){
 else{
 titulo.innerHTML = `Lista de tarefa: ${nome}`;
 }
+
+tarefa.focus()
+
 // acompanha o evento de clique do botão adicionar tarefa
 btnadd.addEventListener("click",criaTarefa);
 
 tarefa.addEventListener('keypress', function(e){
     if (e.key === "Enter")criaTarefa();
-})
+});
 
 
 
 function criaTarefa(){
+
+    if(tarefa.value==""){
+        alert("Digite o nome da sua tarefa")
+    }
+    else{
     const listItem =document.createElement('li');
     listItem.textContent = tarefa.value;
     tasklist.appendChild(listItem);
@@ -52,4 +60,7 @@ function criaTarefa(){
     concluirButton.addEventListener("click",function(){
         listItem.classList.toggle('completed');
     })
+}
+    tarefa.value = '';
+tarefa.focus();//RETORNE O FOCO PARA O CAMPO DE EMTRADA
 }
